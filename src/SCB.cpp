@@ -101,21 +101,21 @@ int startGame(int argc, char** argv) {
     SDL_Log("%u", resY/rat);
     
     initLibs();
-    initLibs();
+
     
-    Window::create();
-    Window::create(gameName, 100, 100, resX, resY);
-    Window::setFullscreen();
+	win.create(gameName, 100, 100, resX, resY);
+	//win.setFullscreen();
     
-    Renderer::create();
+    ren.create(win);
+	
     
     while (!quit) {
         //pollEvents();
     }
     
     
-    Window::destroy();
-    Renderer::destroy();
+	win.destroy();
+    ren.destroy();
     quitLibs();
     
     return 0;

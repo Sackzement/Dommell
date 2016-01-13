@@ -41,7 +41,7 @@ namespace node {
 };*/
 
 
-
+	/*
 int startGame(int argc, char** argv)
 {
 	initLibs();
@@ -70,5 +70,5 @@ int startGame(int argc, char** argv)
 	getchar();
 
 	return 0;
-}
+}*/
 }
