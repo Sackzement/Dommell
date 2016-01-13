@@ -4,17 +4,22 @@
 #include <vector>
 using std::vector;
 
-#include <Ngin/window.h>
-#include <Ngin/renderer.h>
+typedef unsigned int uint;
 
-const char * gameName = "Super Crate Box";
+#include <Ngin/Window.h>
+#include <Ngin/Renderer.h>
 
-const int resX = 1920,
+static const char * gameName = "Super Crate Box";
+
+static const int resX = 1920,
           resY = 1080,
           aspX = 16,
           aspY = 9;
 
-bool quit = false;
+static Window win;
+static Renderer ren;
+
+static bool quit = false;
 
 
 

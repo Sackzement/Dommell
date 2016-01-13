@@ -7,69 +7,78 @@
 #include <vector>
 using std::vector;
 
-int ulu = 0;
+int processVal = 0;
+const long long cycTimes = 5;
+const long long memNum = 100000;
 
-void doFunc() {
-	++ulu;
-	int lul = ulu % 3;
-	ulu += lul % 2;
+void func(long long ul = 3) {
+	++ul;
+	++processVal;
+	int lul = processVal % 3;
+	processVal += lul % 2;
 }
 
 
-void test1() {
+void doFunction() {
 	int time1 = SDL_GetTicks();
-	//for (int i = 0; i < num; ++i)
-		doFunc();
+
+	for (long long j = 0; j < cycTimes;++j)
+	for (int i = 0; i < memNum; ++i)
+		func();
 
 	int time2 = SDL_GetTicks() - time1;
 	SDL_Log("%i", time2);
 }
 
-vector<void(*)()> funcs;
-void test2() {
-	auto it = funcs.begin();
-	auto end = funcs.end();
+void doArray() {
+
+	long long arr[memNum];
+
+
 	int time1 = SDL_GetTicks();
-	for (; it != end; ++it)
-		(*it)();
+
+	for (int j = 0; j<cycTimes; ++j)
+	for (int i=0; i<memNum; ++i)
+		func(arr[i]);
 
 	int time2 = SDL_GetTicks() - time1;
-	SDL_Log("%i", time2);
+	SDL_Log("Array Time =  %i", time2);
 }
 
-/*constexpr unsigned const long long getExp(const unsigned long long& numA, const unsigned long long& numB)  {
-	long result = 1;
-	for (long i = 0; i < numB; ++i)
-		result *= numA;
-	return result;
-}*/
+void doVector() {
 
-void test3() {
-	long long bytenum;
+	vector<long long> vec(memNum,3);
 
-	SDL_Log("(long long) size = %ll  ---  OK?", sizeof(long long));
-	getchar();
-	SDL_Log("(char) size = %i  ---  OK?", sizeof(char));
-	getchar();
-	SDL_Log("Stack test Start !!! OK?");
-	getchar();
-	SDL_Log("Trying to allocate %ll bytes", bytenum);
-	try
-	{
-		//int arr[getExp(2,100)];
-		SDL_Log("%ll bytes   SUCCESSFULL", bytenum);
-	}
-	catch (const std::exception&)
-	{
+	auto it = vec.begin();
+	auto end = vec.end();
 
-	}
+	int time1 = SDL_GetTicks();
+
+	for (int j = 0; j<cycTimes; ++j)
+	for (auto it = vec.begin(); it != end; ++it)
+		func(*it);
+
+	int time2 = SDL_GetTicks() - time1;
+	SDL_Log("Vector Time =  %i", time2);
 }
 
-struct boolval
-{
-	bool valid = true;
-	int val = 5;
-};
+void doVector2() {
+
+	vector<long long> vec(memNum, 3);
+
+
+	int time1 = SDL_GetTicks();
+
+	for (int j = 0; j<cycTimes; ++j)
+		for (long long i = 0; i < memNum; ++i)
+			func(vec[i]);
+
+	int time2 = SDL_GetTicks() - time1;
+	SDL_Log("Vector2 Time =  %i", time2);
+}
+
+
+
 
 
 
@@ -77,15 +86,15 @@ void test4() {
 
 	const int num = 100000;
 	int      arr1[num];
-	boolval  arr2[num + 1];  arr2[num].valid = false;
+	//boolval  arr2[num + 1];  arr2[num].valid = false;
 
 	SDL_Log("Size of array 1 =  %u", sizeof(arr1));
-	SDL_Log("Size of array 2 =  %u", sizeof(arr2));
+	//SDL_Log("Size of array 2 =  %u", sizeof(arr2));
 
 	SDL_Log("Traversing arr 1 ...");
 	int time = SDL_GetTicks();
 	for (int i = 0; i <num;++i) {
-		doFunc();
+		func();
 	}
 	time = SDL_GetTicks() - time;
 	SDL_Log("travel time arr1 =  %i", time);
@@ -93,7 +102,7 @@ void test4() {
 	SDL_Log("Traversing arr 2 ...");
 	time = SDL_GetTicks();
 //	for (int i = 0; arr2[i].valid; ++i) {
-		doFunc();
+	func();
 	//}
 	time = SDL_GetTicks() - time;
 	SDL_Log("travel time arr2 =  %i", time);
@@ -117,9 +126,8 @@ void test5() {
 }
 
 
-void test6() {
+void printVarSizes() {
 
-	const int num = 100000;
 
 	SDL_Log("Stack vs Heap  ENTER");
 	getchar();
@@ -139,44 +147,7 @@ void test6() {
 	SDL_Log("sizeof (long*)      =  %u", sizeof(long*));
 	SDL_Log("sizeof (long long*) =  %u", sizeof(long long*));
 	getchar();
-
-	SDL_Log("Allocating Stack memory long long  %i  times  ENTER", num);
-	getchar();
-	long long stackMem[num];
-	SDL_Log("Allocated Stack memory  ENTER");
-	getchar();
-
-	SDL_Log("Allocating Heap memory long long*  %i  times  ENTER", num);
-	getchar();
-	long long** heapMem = new long long*[num];
-	for (int i = 0; i < num; ++i) {
-	new long long;
-	heapMem[i] = new long long;
-	//*heapMem[i] = i;
-}
-	SDL_Log("Allocated Heap memory  ENTER");
-	getchar();
-	SDL_Log("Traversing Stack memory  ENTER");
-	getchar();
-	int time = SDL_GetTicks();
-	long long val = 7;
-	unsigned long times = 4000;
-	for (int j = 0; j < times; ++j)
-	for (int i = 0; i < num; ++i)
-		val %= stackMem[i];
-	time = SDL_GetTicks() - time;
-	SDL_Log("Traversed Stack memory  Time = %u millSecs  ENTER", time);
-	getchar();
-	SDL_Log("Traversing Heap memory  ENTER");
-	getchar();
-	time = SDL_GetTicks();
-	val = 7;
-	for (int j = 0; j < times; ++j)
-	for (int i = 0; i < num; ++i)
-		val %= *(heapMem[i]);
-	time = SDL_GetTicks() - time;
-	SDL_Log("Traversed Heap memory  Time = %u millSecs  ENTER", time);
-	getchar();
+	
 
 
 }
@@ -184,23 +155,11 @@ void test6() {
 
 void start() {
 
-	//test1();
-	ulu = 0;
-	//for (int i = 0; i < num; ++i)
-		//funcs.push_back(doFunc);
-	//test2();
-	//test3();
-	test6();
+	printVarSizes();
 
-	try
-	{
-		//int arr[num];
-		//SDL_Log("%ll bytes   SUCCESSFULL", num);
-	}
-	catch (const std::exception&)
-	{
-
-	}
+	doArray();
+	doVector();
+	doVector2();
 	getchar();
 }
 
