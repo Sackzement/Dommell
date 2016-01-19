@@ -1,0 +1,24 @@
+=== TODO  myOS
+
+[] - create window fullscreen with native desktop resolution
+[] - create window with settings from settings.save
+[] - "q" quits program
+[] - "h" hides it
+[] - draw 2 lines: top_to_bottom amd left_to_right , show resolution besides lines
+[] - show settings: window(pos, size), HardwareInfo(displays, ram, ...), fps, runtime(gametime)
+[] - add sliders for changing the settings(or buttons/input_fields)
+[] - save to settings.save file when applying settings
+[] - take screenshot of wallpaper(or get a new one) and add it to app as background
+[] - show content of app folder
+[] - can create objects at mouse pos(or at center)
+
+
+
+
+
+
+
+
+
+
+
