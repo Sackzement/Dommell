@@ -173,6 +173,10 @@
     <ClCompile Include="..\src\Node.cpp" />
     <ClCompile Include="..\src\SCB.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\doc\todo_delta" />
+    <None Include="..\doc\todo_list" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

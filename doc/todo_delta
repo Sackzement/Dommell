@@ -1,0 +1,34 @@
+=== TODO delta
+
+goals:
+program works with files of extension ".delta"
+having a Database with list of workers and places(bvh)
+
+Info:
+Personal Data
+where and when worked who            --- bekommene listen von bvh
+Who worked when (and where)          --- Arbeitszeiten
+
+
+
+Hierarchy:
+Firma     (delta,kapa, alfa, aging, hb, pacharis)
+ |
+Personal
+|       \
+büro    bauarbeiter
+
+Personaldaten:
+id  (mXXX, aXXX, bXXX, kXXX, dXXX -- hbXXX, agXXX, paXXX )
+nachname
+name
+...
+
+
+
+Arbeitswoche:
+firma (gmbh / externe)
+int wochennummer
+bvh
+Leistung (Stunden insg)
+liste arbeiter + wieviele std an welchem tag

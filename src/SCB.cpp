@@ -56,8 +56,8 @@ uint calcBiggestMulti(uint x, uint y) {
         std::printf("\n");
     }
     
-    const uint sX = xunter.size();
-    const uint sY = yunter.size();
+    const uint sX = (uint)xunter.size();
+    const uint sY = (uint)yunter.size();
     if (sX > 0 && sY > 0) {
         vector<uint> gem;
         uint iX = 0;
@@ -107,7 +107,7 @@ int startGame(int argc, char** argv) {
 	win.create(gameName, 100, 100, resX, resY);
 	//win.setFullscreen();
     
-    ren.create(win);
+    //ren.create(win);
 	
     
     while (!quit) {

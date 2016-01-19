@@ -10,6 +10,7 @@
 		A7625D4D1C3F26C500FC88D0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7625D4B1C3F26C500FC88D0 /* Node.cpp */; };
 		A7625D4E1C3F26C500FC88D0 /* SCB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7625D4C1C3F26C500FC88D0 /* SCB.cpp */; };
 		A7625D541C3F27F600FC88D0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7625D531C3F27F600FC88D0 /* main.cpp */; };
+		A7AD639F1C4DFBAA00E16165 /* myOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7AD639D1C4DFBAA00E16165 /* myOS.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,10 @@
 		A7625D511C3F26CF00FC88D0 /* SCB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCB.h; sourceTree = "<group>"; };
 		A7625D521C3F26CF00FC88D0 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
 		A7625D531C3F27F600FC88D0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
+		A7AD639C1C4DF6A300E16165 /* myOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myOS.h; sourceTree = "<group>"; };
+		A7AD639D1C4DFBAA00E16165 /* myOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = myOS.cpp; sourceTree = "<group>"; };
+		A7EA8E961C4E1EA1003DD20B /* todo_list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo_list; sourceTree = "<group>"; };
+		A7EA8E971C4E1EDF003DD20B /* todo_delta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo_delta; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,9 +53,10 @@
 		A71F30811C3EEA4A005CEE1D = {
 			isa = PBXGroup;
 			children = (
-				A7625D531C3F27F600FC88D0 /* main.cpp */,
+				A7EA8E951C4E1EA1003DD20B /* doc */,
 				A7625D4F1C3F26CF00FC88D0 /* include */,
 				A7625D4A1C3F26C500FC88D0 /* src */,
+				A7625D531C3F27F600FC88D0 /* main.cpp */,
 				A71F308B1C3EEA4A005CEE1D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,6 +74,7 @@
 			children = (
 				A7625D4B1C3F26C500FC88D0 /* Node.cpp */,
 				A7625D4C1C3F26C500FC88D0 /* SCB.cpp */,
+				A7AD639D1C4DFBAA00E16165 /* myOS.cpp */,
 			);
 			name = src;
 			path = ../src;
@@ -79,9 +86,20 @@
 				A7625D501C3F26CF00FC88D0 /* Node.h */,
 				A7625D511C3F26CF00FC88D0 /* SCB.h */,
 				A7625D521C3F26CF00FC88D0 /* test.h */,
+				A7AD639C1C4DF6A300E16165 /* myOS.h */,
 			);
 			name = include;
 			path = ../include;
+			sourceTree = "<group>";
+		};
+		A7EA8E951C4E1EA1003DD20B /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				A7EA8E961C4E1EA1003DD20B /* todo_list */,
+				A7EA8E971C4E1EDF003DD20B /* todo_delta */,
+			);
+			name = doc;
+			path = ../doc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7625D4E1C3F26C500FC88D0 /* SCB.cpp in Sources */,
+				A7AD639F1C4DFBAA00E16165 /* myOS.cpp in Sources */,
 				A7625D4D1C3F26C500FC88D0 /* Node.cpp in Sources */,
 				A7625D541C3F27F600FC88D0 /* main.cpp in Sources */,
 			);
