@@ -1,5 +1,6 @@
 #include "../include/SCB.h"
 #include <SDL/SDL_log.h>
+#include <SDL/SDL.h>
 
 typedef unsigned int uint;
 
@@ -111,6 +112,7 @@ int startGame(int argc, char** argv) {
     
     while (!quit) {
         //pollEvents();
+		SDL_Delay(50);
     }
     
     

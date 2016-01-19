@@ -162,12 +162,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\Clonk.h" />
     <ClInclude Include="..\include\Node.h" />
     <ClInclude Include="..\include\SCB.h" />
     <ClInclude Include="..\include\test.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\src\Clonk.cpp" />
     <ClCompile Include="..\src\Node.cpp" />
     <ClCompile Include="..\src\SCB.cpp" />
   </ItemGroup>

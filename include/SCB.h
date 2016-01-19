@@ -28,6 +28,6 @@ void  separate(vector<uint> &into, uint num);
 uint calcBiggestMulti(uint x, uint y);
 
 
-int startGame(int argc, char** argv);
+static int startGame(int argc, char** argv);
 
 

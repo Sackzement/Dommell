@@ -24,6 +24,9 @@
     <ClInclude Include="..\include\test.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Clonk.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Node.cpp">
@@ -33,5 +36,8 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\src\Clonk.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
