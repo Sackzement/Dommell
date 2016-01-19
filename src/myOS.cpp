@@ -12,6 +12,7 @@
 #include <vector>
 using std::string;
 using std::vector;
+#include <cctype>
 
 const char * save_file_name = "settings.save";
 
@@ -31,13 +32,44 @@ int start_myOS(int argc, char** argv) {
     {
         // if YES
         {
-            char *file_content = copy_to_mem(save_file);
             
-            vector<string> words;
-            vector<Uint8> types;
+            char *file_content = copy_to_mem(save_file);
+            SDL_RWclose(save_file);
+            
             //separate words in file (by spaces/new_line) till end of file
+            vector<string> words;
+            
+            int i = 0;
+            string word_buf = "";
+            while (1) {
+                char c = file_content[i];
+                
+                if ( isalnum(c) ) {
+                    word_buf += c;
+                }
+                else if ( isspace(c) ) {
+                    if (word_buf.size() > 0) {
+                        words.push_back(word_buf);
+                        word_buf.clear();
+                    }
+                }
+                else if (c == '\0') {
+                    if (word_buf.size() > 0) {
+                        words.push_back(word_buf);
+                        word_buf.clear();
+                    }
+                    break;
+                }
+                else {
+                    word_buf += c;
+                }
+                
+                ++i;
+            }
             
             // analyse tags and values
+            vector<Uint8> types;
+            
             //interpret
         }
         
