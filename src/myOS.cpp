@@ -21,6 +21,13 @@ char* copy_to_mem(SDL_RWops *file);
 
 
 
+vector<string> * create_vector_of_words(const char* str);
+vector<Uint8> * create_vector_of_types(const vector<string> * const words);
+
+
+
+
+
 
 
 int start_myOS(int argc, char** argv) {
@@ -28,49 +35,28 @@ int start_myOS(int argc, char** argv) {
     initLibs();
     Window win;
     
-    if (SDL_RWops *save_file = SDL_RWFromFile(save_file_name,"rb"))// check  if there is a save file
+    // SAVE FILE ACTION
+    if (SDL_RWops * save_file = SDL_RWFromFile(save_file_name,"rb"))// check  if there is a save file
     {
         // if YES
         {
             
-            char *file_content = copy_to_mem(save_file);
+            char * file_content = copy_to_mem(save_file);
             SDL_RWclose(save_file);
             
-            //separate words in file (by spaces/new_line) till end of file
-            vector<string> words;
+            vector<string> * words = create_vector_of_words(file_content);
+            free(file_content);
             
-            int i = 0;
-            string word_buf = "";
-            while (1) {
-                char c = file_content[i];
-                
-                if ( isalnum(c) ) {
-                    word_buf += c;
-                }
-                else if ( isspace(c) ) {
-                    if (word_buf.size() > 0) {
-                        words.push_back(word_buf);
-                        word_buf.clear();
-                    }
-                }
-                else if (c == '\0') {
-                    if (word_buf.size() > 0) {
-                        words.push_back(word_buf);
-                        word_buf.clear();
-                    }
-                    break;
-                }
-                else {
-                    word_buf += c;
-                }
-                
-                ++i;
-            }
-            
-            // analyse tags and values
-            vector<Uint8> types;
+            //
+            vector<Uint8> * types = create_vector_of_types(words);
             
             //interpret
+            {
+                int num_of_words = (int)words->size();
+                for(int i=0; i < num_of_words; ++i) {
+                    if ( (*words)[i].compare("window" == 0 )
+                }
+            }
         }
         
         // create window with last saved values
@@ -128,8 +114,59 @@ char* copy_to_mem(SDL_RWops *file) {
 
 
 
+vector<string> * create_vector_of_words(const char* str) {
+    
+    vector<string> * words = new vector<string>();
+    
+    int i = 0;
+    string word_buf = "";
+    while (1) {
+        char c = str[i];
+        
+        if ( isalnum(c) ) {
+            word_buf += c;
+        }
+        else if ( isspace(c) ) {
+            if (word_buf.size() > 0) {
+                words->push_back(word_buf);
+                word_buf.clear();
+            }
+        }
+        else if (c == '\0') {
+            if (word_buf.size() > 0) {
+                words->push_back(word_buf);
+                word_buf.clear();
+            }
+            break;
+        }
+        else {
+            word_buf += c;
+        }
+        
+        ++i;
+    }
+    
+    
+    return words;
+}
 
 
+
+
+
+
+vector<Uint8> * create_vector_of_types(const vector<string> * const words) {
+    
+    if ( ! words )    return nullptr;
+    
+    vector<Uint8> * types = new vector<Uint8>();
+    
+    
+    
+    
+    
+    return types;
+}
 
 
 
