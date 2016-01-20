@@ -30,6 +30,9 @@
     <ClInclude Include="..\include\Clonk.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\myOS.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Node.cpp">
@@ -40,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\src\Clonk.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\myOS.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
