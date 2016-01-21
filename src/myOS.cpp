@@ -24,7 +24,7 @@ TimeManager time_man;
 
 
 
-char* copy_to_mem(SDL_RWops *file);
+//char* copy_to_mem(SDL_RWops *file);
 
 
 enum struct word_type : Sint8 {
@@ -54,9 +54,9 @@ union word {
 };
 
 
-vector<string> * create_vector_of_strings(const char * const str);
-vector<word> * create_vector_of_words_with_types(vector<string> & cmnds);
-void interpret(const vector<word> & words);
+//vector<string> * create_vector_of_strings(const char * const str);
+//vector<word> * create_vector_of_words_with_types(vector<string> & cmnds);
+//void interpret(const vector<word> & words);
 
 
 
@@ -104,7 +104,7 @@ int start_myOS(int argc, char** argv) {
 
 
 
-
+/*
 bool loadSettingsFromSaveFile() {
 
 	if (SDL_RWops * save_file = SDL_RWFromFile(save_file_name, "rb"))// check  if there is a save file
@@ -141,8 +141,8 @@ bool loadSettingsFromSaveFile() {
 	}
 	return true;
 }
-
-
+*/
+/*
 char* copy_to_mem(SDL_RWops *file) {
     
     Sint64 res_size = SDL_RWsize(file);
@@ -203,14 +203,14 @@ vector<string> * create_vector_of_strings(const char * const str) {
     
     
     return words;
-}
+}*/
 
 
 
 
 
 
-
+/*
 vector<word> * create_vector_of_words_with_types(const vector<const string>  & words) {
     
     
@@ -236,5 +236,5 @@ vector<word> * create_vector_of_words_with_types(const vector<const string>  & w
     return words_w_types;
 }
 
-
+*/
 
