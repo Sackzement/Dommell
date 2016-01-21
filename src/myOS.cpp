@@ -1,7 +1,7 @@
 #include "../include/myOS.h"
 
 
-
+#include "../include/Settings.h"
 
 
 
@@ -15,7 +15,8 @@ using std::string;
 using std::vector;
 #include <cctype>
 
-const char * save_file_name = "settings.save";
+
+
 Window win;
 bool quit = false;
 TimeManager time_man;
@@ -26,36 +27,36 @@ TimeManager time_man;
 char* copy_to_mem(SDL_RWops *file);
 
 
-enum struct cmnd_type : Sint8 {
+enum struct word_type : Sint8 {
 	undef = -1,
 	tag = 0,
 	num = 1,
 };
 
-enum struct tag_type : const char * {
-	undef = "",
-	win = "win",
-	res = "res",
+enum struct tag_type : Sint8 {
+	undef = -1,
+	win = 0,
+	res = 1,
 };
 
 struct tag {
-	cmnd_type type = cmnd_type::tag;
+	word_type type = word_type::tag;
 	tag_type val = tag_type::undef;
 };
 struct num {
-	cmnd_type type = cmnd_type::num;
+	word_type type = word_type::num;
 	Sint64 val = 0;
 };
-union cmnd {
-	cmnd_type type = cmnd_type::undef;
+union word {
+	word_type type = word_type::undef;
 	tag tag;
 	num num;
 };
 
 
 vector<string> * create_vector_of_strings(const char * const str);
-vector<cmnd> * create_vector_of_words_with_types(const vector<string> & const cmnds);
-void interpret(const vector<cmnd> & words);
+vector<word> * create_vector_of_words_with_types(const vector<string> & const cmnds);
+void interpret(const vector<word> & words);
 
 
 
@@ -64,40 +65,37 @@ void interpret(const vector<cmnd> & words);
 
 bool createWin() {
 
-	// these vars will create window
-	char* win_title = "myOS";
-	int win_x = SDL_WINDOWPOS_CENTERED,
-		win_y = SDL_WINDOWPOS_CENTERED,
-		win_w = 1280,
-		win_h = 720;
-	Uint32 win_flag = SDL_WindowFlags::SDL_WINDOW_SHOWN;
-
 	// load last window settings from file  if possible   (flags should not create hidden/minimized window)
 
 	//create window
-	win.create(win_title, win_x, win_y, win_w, win_h, win_flag);
+	win.create(window_title,
+		default_settings.win_x, 
+		default_settings.win_y, 
+		default_settings.win_w, 
+		default_settings.win_h, 
+		default_settings.win_flag);
 
 	return true;
 }
 
+int start_mainloop() {
 
+	while (!quit) {
+		time_man.calcGameAndDeltaTime();
+		//doScripts
+	}
 
+	return 0;
+}
 
-
-
+// MAIN ENTRYPOINT
 int start_myOS(int argc, char** argv) {
 
 	initLibs();
 
 	createWin();
-
-	//mainloop
-	while ( ! quit ) {
-		time_man.calcGameAndDeltaTime();
-		//doScripts
-	}
     
-    return 0;
+    return start_mainloop();
 }
 
 
@@ -127,20 +125,21 @@ bool loadSettingsFromSaveFile() {
 				if (words->size() >= 4) {
 					int i = 0;
 					if ((*words)[i].compare("win") == 0)
-						if ((*words)[++i].compare("res") == 0)
-							if ((*types)[++i] == word_type::num
-								&& (*types)[++i] == word_type::num) {
+						if ((*words)[++i].compare("res") == 0); i++;
+							//if ((*types)[++i] == word_type::num
+								//&& (*types)[++i] == word_type::num) {
 
-								win_w = std::stoi((*words)[--i]);
-							}
-
-
+							//win_w = std::stoi((*words)[--i]);
 				}
+
+
+				
 			}
 		}
 
 		// create window with last saved values
 	}
+	return true;
 }
 
 
@@ -222,18 +221,19 @@ vector<word> * create_vector_of_words_with_types(const vector<string>  & const w
 		char firstChar = words[i][0];
 
 		if (isalpha(firstChar)) {
-			word w;
-			w.type = word_type::tag;
-			w.tag.str = std::str words[i];
-			words_w_types->push_back(word_type::tag);
+			//word w;
+			//w.type = word_type::tag;
+			//w.tag.val = std::stoi(words[i]);
+			//words_w_types->push_back(word_type::tag);
 		}
-		else if (isdigit(firstChar))
-			words_w_types->push_back(word_type::num);
+		else if (isdigit(firstChar)) {
+			//words_w_types->push_back(word_type::num);
+		}
 	}
     
     
     
-    return types;
+    return words_w_types;
 }
 
 

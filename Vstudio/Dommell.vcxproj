@@ -166,6 +166,7 @@
     <ClInclude Include="..\include\myOS.h" />
     <ClInclude Include="..\include\Node.h" />
     <ClInclude Include="..\include\SCB.h" />
+    <ClInclude Include="..\include\Settings.h" />
     <ClInclude Include="..\include\test.h" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <ClCompile Include="..\src\myOS.cpp" />
     <ClCompile Include="..\src\Node.cpp" />
     <ClCompile Include="..\src\SCB.cpp" />
+    <ClCompile Include="..\src\Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\doc\todo_delta" />
