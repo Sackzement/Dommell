@@ -26,14 +26,16 @@ struct Settings
 		// load file content into main mem  
 		// put into vector<string> seperated by blank chars
 		// search for:
-		// window
-		// winx XXX
+		// window		// winx XXX
 		// winy XXX
 		// ...
 		// decide what to do with values if some are missing
+        
+        return true;
 	}
 	bool saveToFile() {
 		//
+        return true;
 	}
 };
 

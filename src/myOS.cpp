@@ -55,7 +55,7 @@ union word {
 
 
 vector<string> * create_vector_of_strings(const char * const str);
-vector<word> * create_vector_of_words_with_types(const vector<string> & const cmnds);
+vector<word> * create_vector_of_words_with_types(vector<string> & cmnds);
 void interpret(const vector<word> & words);
 
 
@@ -118,14 +118,14 @@ bool loadSettingsFromSaveFile() {
 			vector<string> * words = create_vector_of_strings(file_content);
 			free(file_content);
 
-			vector<word> * types = create_vector_of_words_with_types(*words);
+			//vector<word> * types = create_vector_of_words_with_types(*words);
 
 			//interpret
 			{
 				if (words->size() >= 4) {
 					int i = 0;
 					if ((*words)[i].compare("win") == 0)
-						if ((*words)[++i].compare("res") == 0); i++;
+                        if ((*words)[++i].compare("res") == 0) {}
 							//if ((*types)[++i] == word_type::num
 								//&& (*types)[++i] == word_type::num) {
 
@@ -211,12 +211,12 @@ vector<string> * create_vector_of_strings(const char * const str) {
 
 
 
-vector<word> * create_vector_of_words_with_types(const vector<string>  & const words) {
+vector<word> * create_vector_of_words_with_types(const vector<const string>  & words) {
     
     
     vector<word> * words_w_types = new vector<word>();
     
-	int numWords = words.size();
+	int numWords = (int)words.size();
 	for (int i = 0; i < numWords; ++i) {
 		char firstChar = words[i][0];
 

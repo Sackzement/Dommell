@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A70AD1301C50A69E00FDE814 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A70AD12E1C50A69E00FDE814 /* Settings.cpp */; };
 		A7625D4D1C3F26C500FC88D0 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7625D4B1C3F26C500FC88D0 /* Node.cpp */; };
 		A7625D4E1C3F26C500FC88D0 /* SCB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7625D4C1C3F26C500FC88D0 /* SCB.cpp */; };
 		A7625D541C3F27F600FC88D0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7625D531C3F27F600FC88D0 /* main.cpp */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A70AD12C1C50A69400FDE814 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		A70AD12E1C50A69E00FDE814 /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
 		A71F308A1C3EEA4A005CEE1D /* Dommell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dommell; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7625D4B1C3F26C500FC88D0 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		A7625D4C1C3F26C500FC88D0 /* SCB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCB.cpp; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 		A7625D4A1C3F26C500FC88D0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A70AD12E1C50A69E00FDE814 /* Settings.cpp */,
 				A7625D4B1C3F26C500FC88D0 /* Node.cpp */,
 				A7625D4C1C3F26C500FC88D0 /* SCB.cpp */,
 				A7AD639D1C4DFBAA00E16165 /* myOS.cpp */,
@@ -83,6 +87,7 @@
 		A7625D4F1C3F26CF00FC88D0 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				A70AD12C1C50A69400FDE814 /* Settings.h */,
 				A7625D501C3F26CF00FC88D0 /* Node.h */,
 				A7625D511C3F26CF00FC88D0 /* SCB.h */,
 				A7625D521C3F26CF00FC88D0 /* test.h */,
@@ -159,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7625D4E1C3F26C500FC88D0 /* SCB.cpp in Sources */,
+				A70AD1301C50A69E00FDE814 /* Settings.cpp in Sources */,
 				A7AD639F1C4DFBAA00E16165 /* myOS.cpp in Sources */,
 				A7625D4D1C3F26C500FC88D0 /* Node.cpp in Sources */,
 				A7625D541C3F27F600FC88D0 /* main.cpp in Sources */,
