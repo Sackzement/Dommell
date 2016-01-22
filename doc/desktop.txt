@@ -1,0 +1,75 @@
+right desktop
+
+diagonal  27inch | 68.58cm
+60cm x 33cm
+1920 / 1080
+brightness 250 cd/m^2
+HDMI
+67,5kHZ 60 Hz PP
+
+1920 / 60cm = 32 pixel per cm
+1080 / 33cm = 32,7272 pixel per cm
+
+
+a2 + b2 = c2
+sqrt(a2 + b2) = c = 18,35756
+
+68.58 / 18.3575597507 * 16 = 59.77265cm   (~60cm)
+68.58 / 18.3575597507 * 9 = 33.622116cm  (~33cm)
+
+1920 / 1080 -> smallest div = 16 / 9
+1920 / 16 = 120
+1080 / 9  = 120
+
+2880 / 1800 -> smallest div = 8 / 5
+2880 / 8 = 360
+1800 / 5 = 360
+
+struct Resolution
+asprat  x y -> uint16 / uint16     maxknown(16/9, 905/509)
+factor  uint16    maxknown(120(16/9), 360(8/5))
+getResolution() -> return res(asrat.x * factor , asprat.y * factor)
+
+
+
+
+
+SDL_GetClosestDisplayMode
+SDL_GetCurrentDisplayMode
+SDL_GetCurrentVideoDriver
+SDL_GetDesktopDisplayMode
+SDL_GetDisplayBounds
+SDL_GetDisplayDPI
+SDL_GetDisplayMode
+SDL_GetDisplayName
+SDL_GetNumDisplayModes
+SDL_GetNumVideoDisplays
+SDL_GetNumVideoDrivers
+SDL_GetVideoDriver
+
+SDL_GetNumVideoDrivers
+SDL_GetVideoDriver      (name)
+
+SDL_GetNumVideoDisplays
+SDL_GetDisplayName
+SDL_GetDisplayBounds
+SDL_GetDisplayDPI
+
+SDL_GetNumDisplayModes
+SDL_GetDisplayMode
+
+===============================
+
+SDL_GetNumRenderDrivers
+SDL_GetRenderDrawBlendMode
+SDL_GetRenderDrawColor
+SDL_GetRenderDriverInfo
+SDL_GetRenderTarget
+SDL_GetRenderer
+SDL_GetRendererInfo
+SDL_GetRendererOutputSize
+
+
+
+
+

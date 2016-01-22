@@ -3,7 +3,7 @@
 #include <SDL/SDL.h>
 
 typedef unsigned int uint;
-
+/*
 void  separate(vector<uint> &into, uint num) {
     
     if (num == 0)
@@ -90,16 +90,16 @@ uint calcBiggestMulti(uint x, uint y) {
     
     return 0;
 }
-
+*/
 
 int startGame(int argc, char** argv) {
     
     
     uint rat = calcBiggestMulti(resX, resY);
     
-    SDL_Log("Resolution  %u %u", resX,resY);
+    /*SDL_Log("Resolution  %u %u", resX,resY);
     SDL_Log("%u", resX/rat);
-    SDL_Log("%u", resY/rat);
+    SDL_Log("%u", resY/rat);*/
     
     initLibs();
 
