@@ -6,7 +6,7 @@
 
 
 #include <Ngin/libs.h>
-#include <Ngin/window.h>
+//#include <Ngin/window.h>
 #include <Ngin/TimeManager.h>
 #include <Ngin/HardwareInfo.h>
 #include <SDL/SDL_rwops.h>
@@ -18,7 +18,14 @@ using std::vector;
 
 
 
-Window win;
+
+// VARIABLES
+#include <SDL/SDL_video.h>
+SDL_Window* win;
+
+#include <SDL/SDL_render.h>
+SDL_Renderer* ren;
+
 bool quit = false;
 TimeManager time_man;
 
@@ -64,19 +71,25 @@ union word {
 
 
 
-bool createWin() {
+void createWin() {
 
 	// load last window settings from file  if possible   (flags should not create hidden/minimized window)
 
 	//create window
-	win.create(window_title,
+	win = SDL_CreateWindow(window_title,
 		default_settings.win_x, 
 		default_settings.win_y, 
 		default_settings.win_w, 
 		default_settings.win_h, 
-		default_settings.win_flag);
+		default_settings.win_flags);
 
-	return true;
+}
+
+void createRenderer() {
+
+	ren = SDL_CreateRenderer(win,
+		default_settings.ren_driverIdx,
+		default_settings.ren_flags);
 }
 
 
@@ -185,10 +198,23 @@ bool print_displayinfo() {
 
 	return true;
 }
+
+void input() {
+
+}
+void update() {
+
+}
+void render() {
+
+}
 int start_mainloop() {
 
 	while (!quit) {
 		time_man.calcGameAndDeltaTime();
+		input();
+		update();
+		render();
 		//doScripts
 	}
 
@@ -203,6 +229,10 @@ int start_myOS(int argc, char** argv) {
 	print_displayinfo();
 
 	createWin();
+
+	createRenderer();
+
+	//switchToScene(Scene);
     
     return start_mainloop();
 }

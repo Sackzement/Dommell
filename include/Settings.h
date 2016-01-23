@@ -70,15 +70,19 @@ struct Settings
 		win_y,
 		win_w,
 		win_h,
-		win_flag;
+		win_flags,
+		ren_driverIdx,
+		ren_flags;
 
 	Settings() {}
-	Settings(int wx, int wy, int ww, int wh, int wf) :
+	Settings(int wx,int wy,int ww,int wh,int wf,int ri,int rf) :
 		win_x(wx),
 		win_y(wy),
 		win_w(ww),
 		win_h(wh),
-		win_flag(wf)
+		win_flags(wf),
+		ren_driverIdx(ri),
+		ren_flags(rf)
 	{}
 
 	bool loadFromFile(const char*const filepath) {
@@ -110,7 +114,7 @@ struct Settings
 
 
 
-const Settings default_settings(100,100,1280,720,4);
+const Settings default_settings(100,100,1280,720,4,-1,10);
 
 
 
