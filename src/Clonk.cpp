@@ -19,16 +19,16 @@ namespace clonk {
 	}
 
 	bool quit = false;
-	TimeManager time_man;
+	Time time_man;
 
 	void mainloop() {
 
-		time_man.calcGameAndDeltaTime();
+		time_man.update();
 		time_man.resetDelay();
 
 		while ( ! quit ) {
 		
-			time_man.calcGameAndDeltaTime();
+			time_man.update();
 			//scripts
 			//input
 			//update

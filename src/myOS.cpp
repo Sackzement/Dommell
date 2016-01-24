@@ -1,33 +1,25 @@
 #include "../include/myOS.h"
 
 
-#include "../include/Settings.h"
 
 
 
 #include <Ngin/libs.h>
 //#include <Ngin/window.h>
-#include <Ngin/TimeManager.h>
 #include <Ngin/HardwareInfo.h>
 #include <SDL/SDL_rwops.h>
+#include <SDL/SDL_events.h>
 #include <string>
 #include <vector>
 using std::string;
 using std::vector;
 #include <cctype>
+#include <SDL/SDL_log.h>
 
 
 
 
-// VARIABLES
-#include <SDL/SDL_video.h>
-SDL_Window* win;
 
-#include <SDL/SDL_render.h>
-SDL_Renderer* ren;
-
-bool quit = false;
-TimeManager time_man;
 
 
 
@@ -71,29 +63,28 @@ union word {
 
 
 
-void createWin() {
+void myOS::createWin() {
 
 	// load last window settings from file  if possible   (flags should not create hidden/minimized window)
 
 	//create window
-	win = SDL_CreateWindow(window_title,
-		default_settings.win_x, 
-		default_settings.win_y, 
-		default_settings.win_w, 
-		default_settings.win_h, 
+	window = SDL_CreateWindow("myOS",
+		default_settings.win_x,
+		default_settings.win_y,
+		default_settings.win_w,
+		default_settings.win_h,
 		default_settings.win_flags);
 
 }
 
-void createRenderer() {
-
-	ren = SDL_CreateRenderer(win,
+void myOS::createRenderer() {
+	renderer = SDL_CreateRenderer(window,
 		default_settings.ren_driverIdx,
 		default_settings.ren_flags);
 }
 
 
-void  separate(vector<uint> &into, uint num) {
+void separate(vector<uint> &into, uint num) {
 
 	if (num == 0)
 		into.push_back(0);
@@ -199,30 +190,173 @@ bool print_displayinfo() {
 	return true;
 }
 
-void input() {
+void myOS::testGPUram() {
+	static Uint64 all = 0;
+
+	for (int i = 1;; ++i) {
+		Uint64 num = pow(2, i);
+		Uint64 num2 = sqrt(num);
+		SDL_Texture* tex = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, num2, num2);
+		if (tex) {
+			all += num2 * num2;
+		}
+		else {
+			const string str = string() + "\n" + SDL_GetError() + "\nTexture RAM allocated :  " +  std::to_string(all);
+
+			SDL_RWops*  rw = SDL_RWFromFile("log.txt", "a");
+			if (rw) {
+				if (str.length() != SDL_RWwrite(rw, str.c_str(), 1, str.length()))
+					SDL_Log(str.c_str());
+				SDL_RWclose(rw);
+			}
+			else
+				SDL_Log(str.c_str());
+
+			break;
+		}
+
+	}
+}
+void myOS::createBG() {
+	bg = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 1920, 1080);
+	if (!bg) {
+		const string str = string() + "\n" + SDL_GetError();
+
+		SDL_RWops*  rw = SDL_RWFromFile("log.txt", "a");
+		if (rw) {
+			if (str.length() != SDL_RWwrite(rw, str.c_str(), 1, str.length()))
+				SDL_Log(str.c_str());
+			SDL_RWclose(rw);
+		}
+		else
+			SDL_Log(str.c_str());
+	}
+	else {
+		SDL_SetRenderTarget(renderer, bg);
+
+		for (int iy = 0; iy < 1080; ++iy) {
+			Uint8 col =(255./1079.) * (double)iy;
+			SDL_SetRenderDrawColor(renderer, col,col,col,255);
+			for (int ix = 0; ix < 1920; ++ix)
+				SDL_RenderDrawPoint(renderer, ix, iy);
+		}
+	}
+}
+#include <SDL/SDL_image.h>
+void myOS::loadResources() {
+
+	const char * respath = "../res/bg.png";
+	SDL_Surface* surf = IMG_Load(respath);
+
+	if (!surf) {
+
+		const string str = string() + "\n" + SDL_GetError();
+
+		SDL_RWops*  rw = SDL_RWFromFile("log.txt", "a");
+		if (rw) {
+			if ( str.length() != SDL_RWwrite(rw, str.c_str(), 1, str.length()) )
+				SDL_Log(str.c_str());
+			SDL_RWclose(rw);
+		}
+		else
+			SDL_Log(str.c_str());
+	}
+	else {
+		bg = SDL_CreateTextureFromSurface(renderer, surf);
+		if (!bg) {
+
+			const string sstr = string() + "\nError:  Failed to create Texture from Surface image  "+respath+"  "+SDL_GetError();
+			const char * str = sstr.c_str();
+			size_t len = SDL_strlen(str);
+
+			SDL_RWops * rw = SDL_RWFromFile("log.txt", "a");
+			SDL_RWwrite(rw, str, 1, len);
+			SDL_RWclose(rw);
+	}
+
+		SDL_FreeSurface(surf);
+	}
+}
+void myOS::input() {
+
+	keyboard.reset_onces();
+
+	SDL_Event ev;
+	while (SDL_PollEvent(&ev)) {
+
+		switch (ev.type) {
+
+			case SDL_QUIT:
+				quit = true;
+				break;
+			case SDL_KEYDOWN:
+				if (ev.key.repeat == 0)
+					keyboard.input_keydown(ev.key.keysym.scancode);
+				break;
+			case SDL_KEYUP:
+				keyboard.input_keyup(ev.key.keysym.scancode);
+				break;
+		}
+	}
+
+	// MAIN INPUT
+
+
+	if (keyboard.down_once[SDL_SCANCODE_Q] ||
+		keyboard.down_once[SDL_SCANCODE_ESCAPE])
+		quit = true;
+	if (keyboard.down_once[SDL_SCANCODE_D])
+		SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN);
+	if (keyboard.down_once[SDL_SCANCODE_F])
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	if (keyboard.down_once[SDL_SCANCODE_G])
+		SDL_SetWindowFullscreen(window, 0);
+	if (keyboard.down_once[SDL_SCANCODE_H]) {
+		SDL_SetWindowFullscreen(window, 0);
+		SDL_SetWindowBordered(window, SDL_FALSE);
+		SDL_SetWindowPosition(window, 1920, 0);
+		SDL_SetWindowSize(window, 1920, 1080);
+	}
+	if (keyboard.down_once[SDL_SCANCODE_M])
+		SDL_SetWindowGrab(window, SDL_TRUE);
+	if (keyboard.down_once[SDL_SCANCODE_N])
+		SDL_SetWindowGrab(window, SDL_FALSE);
+	
+	/*for (auto it = m_objects.begin(); it != m_objects.end(); ++it) {
+
+		(*it).input();
+	}*/
+}
+void myOS::update() {
 
 }
-void update() {
-
+void myOS::render() {
+	SDL_SetRenderTarget(renderer,nullptr);
+	SDL_RenderClear(renderer);
+	SDL_RenderCopy(renderer, bg, nullptr, nullptr);
+	// mainmenu.render();
+	SDL_RenderPresent(renderer);
 }
-void render() {
+void myOS::start_mainloop() {
 
-}
-int start_mainloop() {
+	time.resetDelay();
 
 	while (!quit) {
-		time_man.calcGameAndDeltaTime();
+
+		time.update();
+		//doScripts
 		input();
 		update();
 		render();
-		//doScripts
+		time.delay();
 	}
 
-	return 0;
 }
-
+//====================================================================
 // MAIN ENTRYPOINT
-int start_myOS(int argc, char** argv) {
+//====================================================================
+
+int myOS::start_myOS(int argc, char** argv) {
 
 	initLibs();
 
@@ -232,10 +366,16 @@ int start_myOS(int argc, char** argv) {
 
 	createRenderer();
 
+	//loadResources();
+	//testGPUram();
+	//createBG();
 	//switchToScene(Scene);
+
+	start_mainloop();
     
-    return start_mainloop();
+	return 0;
 }
+
 
 
 

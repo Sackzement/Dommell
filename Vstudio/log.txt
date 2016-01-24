@@ -1,0 +1,7 @@
+
+Couldn't open bggg.png
+Couldn't open ../res/bggg.png
+Texture dimensions are limited to 16384x16384
+Texture RAM allocated :  536855690
+Texture dimensions are limited to 16384x16384
+Texture RAM allocated :  536855690

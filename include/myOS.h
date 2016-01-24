@@ -1,7 +1,41 @@
-#pragma
+#pragma once
+#include <Ngin/TimeManager.h>
+#include <SDL/SDL_video.h>
+#include <SDL/SDL_render.h>
+#include <Ngin/Keyboard.h>
+#include "../include/Settings.h"
 
-#include <Ngin/libs.h>
-#include <Ngin/window.h>
+
+struct myOS
+{
+	int start_myOS(int argc, char** argv);
+
+private:
+	Time time;
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+	Keyboard keyboard;
+	bool quit = false;
+	SDL_Texture* bg;
 
 
-int start_myOS(int argc, char** argv);
+	const Settings default_settings = Settings(1920, 0, 1920, 1080, SDL_WINDOW_BORDERLESS, -1, 10);
+
+
+
+
+	void createWin();
+	void createRenderer();
+	void testGPUram();
+	void createBG();
+	void loadResources();
+	void input();
+	void update();
+	void render();
+	void start_mainloop();
+
+};
+
+
+
+

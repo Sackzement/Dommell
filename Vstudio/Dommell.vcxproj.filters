@@ -36,6 +36,9 @@
     <ClInclude Include="..\include\Settings.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\MainMenu.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Node.cpp">
@@ -62,5 +65,6 @@
     <None Include="..\doc\todo_list">
       <Filter>doc</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
