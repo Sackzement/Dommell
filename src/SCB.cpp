@@ -104,7 +104,7 @@ int startGame(int argc, char** argv) {
     initLibs();
 
     
-	win.create(gameName, 100, 100, resX, resY);
+	//win.create(gameName, 100, 100, resX, resY);
 	//win.setFullscreen();
     
     //ren.create(win);

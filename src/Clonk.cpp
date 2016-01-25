@@ -11,7 +11,7 @@ namespace clonk {
 		initLibs();
 
 		Window win;
-		win.create();
+		//win.create();
 
 		
 

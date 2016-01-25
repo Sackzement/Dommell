@@ -11,10 +11,10 @@
 #include <SDL/SDL_events.h>
 #include <string>
 #include <vector>
-using std::string;
+//using std::string;
 using std::vector;
 #include <cctype>
-#include <SDL/SDL_log.h>
+#include <Ngin/Log.h>
 
 
 
@@ -197,40 +197,22 @@ void myOS::testGPUram() {
 		Uint64 num = pow(2, i);
 		Uint64 num2 = sqrt(num);
 		SDL_Texture* tex = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, num2, num2);
+		
 		if (tex) {
 			all += num2 * num2;
 		}
 		else {
-			const string str = string() + "\n" + SDL_GetError() + "\nTexture RAM allocated :  " +  std::to_string(all);
-
-			SDL_RWops*  rw = SDL_RWFromFile("log.txt", "a");
-			if (rw) {
-				if (str.length() != SDL_RWwrite(rw, str.c_str(), 1, str.length()))
-					SDL_Log(str.c_str());
-				SDL_RWclose(rw);
-			}
-			else
-				SDL_Log(str.c_str());
-
+			Log(std::string() + "\n" + SDL_GetError() + "\nTexture RAM allocated :  " + std::to_string(all));
 			break;
 		}
 
 	}
+
 }
 void myOS::createBG() {
 	bg = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 1920, 1080);
-	if (!bg) {
-		const string str = string() + "\n" + SDL_GetError();
-
-		SDL_RWops*  rw = SDL_RWFromFile("log.txt", "a");
-		if (rw) {
-			if (str.length() != SDL_RWwrite(rw, str.c_str(), 1, str.length()))
-				SDL_Log(str.c_str());
-			SDL_RWclose(rw);
-		}
-		else
-			SDL_Log(str.c_str());
-	}
+	if (!bg)
+		Log(string() + "\n" + SDL_GetError());
 	else {
 		SDL_SetRenderTarget(renderer, bg);
 
@@ -250,29 +232,12 @@ void myOS::loadResources() {
 
 	if (!surf) {
 
-		const string str = string() + "\n" + SDL_GetError();
-
-		SDL_RWops*  rw = SDL_RWFromFile("log.txt", "a");
-		if (rw) {
-			if ( str.length() != SDL_RWwrite(rw, str.c_str(), 1, str.length()) )
-				SDL_Log(str.c_str());
-			SDL_RWclose(rw);
-		}
-		else
-			SDL_Log(str.c_str());
+		Log(string() + "\n" + SDL_GetError());
 	}
 	else {
 		bg = SDL_CreateTextureFromSurface(renderer, surf);
-		if (!bg) {
-
-			const string sstr = string() + "\nError:  Failed to create Texture from Surface image  "+respath+"  "+SDL_GetError();
-			const char * str = sstr.c_str();
-			size_t len = SDL_strlen(str);
-
-			SDL_RWops * rw = SDL_RWFromFile("log.txt", "a");
-			SDL_RWwrite(rw, str, 1, len);
-			SDL_RWclose(rw);
-	}
+		if (!bg)
+			Log(string() + "\nError:  Failed to create Texture from Surface image  " + respath + "  " + SDL_GetError());
 
 		SDL_FreeSurface(surf);
 	}
@@ -331,8 +296,11 @@ void myOS::update() {
 
 }
 void myOS::render() {
+	
 	SDL_SetRenderTarget(renderer,nullptr);
+	SDL_SetRenderDrawColor(renderer,0,0,0,0);
 	SDL_RenderClear(renderer);
+
 	SDL_RenderCopy(renderer, bg, nullptr, nullptr);
 	// mainmenu.render();
 	SDL_RenderPresent(renderer);
