@@ -141,11 +141,11 @@ static map&lt;const string,Surface&gt;* m_surfacesNamed
 public:
 static void addSurface(Surface surf)
 static void addSurfaceNamed(Surface surf,const string&amp; name)
-static bool existsSurfaceNamed(const string&amp; name) const
-static Surface getSurface(int indx) const
-static Surface getSurfaceNamed(const string&amp; name) const
+static bool existsSurfaceNamed(const string&amp; name)
+static Surface getSurface(int indx)
+static Surface getSurfaceNamed(const string&amp; name)
 static void freeSurfaces()
-static void freeSurfaceNamed()
+static void freeSurfacesNamed()
 static void freeAll()
 <y:LabelModel>
               <y:ErdAttributesNodeLabelModel/>
