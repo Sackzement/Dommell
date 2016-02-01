@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
-  <!--Created by yEd 3.14.3-->
+  <!--Created by yEd 3.14.4-->
   <key attr.name="Description" attr.type="string" for="graph" id="d0"/>
   <key for="port" id="d1" yfiles.type="portgraphics"/>
   <key for="port" id="d2" yfiles.type="portgeometry"/>
@@ -21,37 +21,24 @@
           <y:Geometry height="485.6160000000001" width="395.18653306613214" x="318.5" y="306.25999999999993"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.1328125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="56.46484375" x="169.36084465806607" y="4.0">Renderer</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="413.8515625" modelName="custom" textColor="#000000" visible="true" width="392.60546875" x="2.0" y="30.1328125">private:
-SDL_Renderer* m_sdlRenderer
-public:
-        Renderer()
-bool create(Window&amp; win, int renidx, Uint32 flags)
-bool exists() const
-void destroy()
-
-Texture createTexture(Uint32 fmt,int acc,int w,int h)
-Texture createTexture(Surface&amp; surf)
-
-bool setTarget(Texture&amp; tex)
-bool setTargetDefault()
-bool setColor(Uint8 r,Uint8 g,Uint8 b,Uint8 a)
-bool clear()
-bool copy(Texture&amp; tex,int x,int y,int w,int h)
-bool copyEx(Texture&amp; tex,int x,int y,int w,int h,double rot,Flip flip)
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="54.02734375" x="170.57959465806607" y="4.0">Renderer</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="253.919921875" modelName="custom" textColor="#000000" visible="true" width="343.48046875" x="2.0" y="30.701171875">friend class Window;
 private:
-vector&lt;Texture&gt;* m_textures
-map&lt;const string,Texture&gt;* m_texturesNamed
+SDL_Renderer * m_sdlRenderer;
 public:
-void addTexture(Texture tex)
-void addTextureNamed(Texture tex,const string&amp; name)
-bool existsTextureNamed(const string&amp; name) const
-Texture getTexture(int indx) const
-Texture getTextureNamed(const string&amp; name) const
-void destroyTextures()
-void destroyTexturesNamed()
-void destroyAll()
-<y:LabelModel>
+         Renderer();
+bool exists() const;
+void destroy();
+
+bool setTarget(Texture tex);
+bool setTargetDefault();
+bool setColor(Uint8 r,Uint8 g,Uint8 b,Uint8 a);
+bool clear();
+bool copy(Texture tex,int x,int y,int w,int h);
+bool copyEx(Texture tex,int x,int y,int w,int h,double rot,Flip flip);
+
+Texture createTexture(Uint32 fmt,int acc,int w,int h);
+Texture createTexture(Surface surf);<y:LabelModel>
               <y:ErdAttributesNodeLabelModel/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -70,17 +57,18 @@ void destroyAll()
           <y:Geometry height="240.40000000000015" width="182.17042084168338" x="722.7811200000002" y="306.26"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.1328125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="49.1640625" x="66.50317917084169" y="4.0">Texture</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="145.328125" modelName="custom" textColor="#000000" visible="true" width="166.099609375" x="2.0" y="30.1328125">private:
-SDL_Texture* m_sdlTexture
-int m_width
-int m_height
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="44.681640625" x="68.74439010834169" y="4.0">Texture</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="165.712890625" modelName="custom" textColor="#000000" visible="true" width="162.0625" x="2.0" y="30.701171875">friend Renderer;
+private:
+SDL_Texture * m_sdlTexture;
+int m_width;
+int m_height;
 public:
-bool exists() const
-void destroy()
+bool exists() const;
+void destroy();
 
-int getWidth() const
-int getHeight() const<y:LabelModel>
+int getWidth() const;
+int getHeight() const;<y:LabelModel>
               <y:ErdAttributesNodeLabelModel/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -99,15 +87,18 @@ int getHeight() const<y:LabelModel>
           <y:Geometry height="214.16000000000008" width="384.3950300601202" x="-98.0399999999999" y="300.8350399999998"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.1328125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="49.3515625" x="167.5217337800601" y="4.0">Window</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="117.0625" modelName="custom" textColor="#000000" visible="true" width="381.66015625" x="2.0" y="30.1328125">private:
-SDL_Window* m_sdlWindow
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="46.6796875" x="168.8576712800601" y="4.0">Window</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="151.01171875" modelName="custom" textColor="#000000" visible="true" width="340.814453125" x="2.0" y="30.701171875">private:
+SDL_Window * m_sdlWindow;
 public:
-bool create(const string&amp; title,int x,int y,int w,int h, Uint32 flags)
-bool exists() const
-void destroy()
+bool create(const string&amp; title,int x,int y,int w,int h, Uint32 flags);
+bool exists() const;
+void destroy();
 
-bool setFullscreen(Uint32 flag)<y:LabelModel>
+bool setFullscreen(Uint32 flag);
+
+Renderer createRenderer(int renidx, Uint32 flags);
+<y:LabelModel>
               <y:ErdAttributesNodeLabelModel/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -126,27 +117,80 @@ bool setFullscreen(Uint32 flag)<y:LabelModel>
           <y:Geometry height="337.04319999999996" width="519.6390380761522" x="-223.27999999999986" y="550.9550399999998"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.1328125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="46.69140625" x="236.47381591307612" y="4.0">Surface</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="286.65625" modelName="custom" textColor="#000000" visible="true" width="517.826171875" x="2.0" y="30.1328125">private:
-SDL_Surface* m_sdlSurface
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="45.35546875" x="237.14178466307612" y="4.0">Surface</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" modelName="custom" textColor="#000000" visible="true" width="468.87109375" x="2.0" y="30.701171875">private:
+SDL_Surface * m_sdlSurface;
 public:
-bool create(int w,int h,int bpp,Uint32 rmask,Uint32 gmask,Uint32 bmask,Uint32 amask)
-bool load(const string&amp; filepath)
-bool save(const string&amp; filepath) const
-bool exists() const
-void free()
-private:
-static vector&lt;Surface&gt;* m_surfaces
-static map&lt;const string,Surface&gt;* m_surfacesNamed
+bool create(int w,int h,int bpp,Uint32 rmask,Uint32 gmask,Uint32 bmask,Uint32 amask);
+bool load(const string&amp; filepath);
+bool save(const string&amp; filepath) const;
+bool exists() const;
+void free();
+<y:LabelModel>
+              <y:ErdAttributesNodeLabelModel/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:ErdAttributesNodeLabelModelParameter/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n4">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
+          <y:Geometry height="235.0" width="328.0" x="352.09326653306607" y="932.5"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="92.04296875" x="117.978515625" y="4.0">TextureManager</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="180.4140625" modelName="custom" textColor="#000000" visible="true" width="306.1328125" x="2.0" y="30.701171875">private:
+vector&lt;Texture&gt; *                   m_textures;
+map&lt;const string,Texture&gt; *  m_texturesNamed;
 public:
-static void addSurface(Surface surf)
-static void addSurfaceNamed(Surface surf,const string&amp; name)
-static bool existsSurfaceNamed(const string&amp; name)
-static Surface getSurface(int indx)
-static Surface getSurfaceNamed(const string&amp; name)
-static void freeSurfaces()
-static void freeSurfacesNamed()
-static void freeAll()
+void addTexture(Texture tex);
+void addTextureNamed(Texture tex,const string&amp; name);
+bool existsTextureNamed(const string&amp; name) const;
+Texture getTexture(int indx) const;
+Texture getTextureNamed(const string&amp; name) const;
+void destroyAllTextures();
+void destroyAllTexturesNamed();
+void destroyAll();<y:LabelModel>
+              <y:ErdAttributesNodeLabelModel/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:ErdAttributesNodeLabelModelParameter/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
+          <y:Geometry height="320.0" width="495.59249999999986" x="-223.27999999999986" y="926.0625"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="92.716796875" x="201.43785156249993" y="4.0">SurfaceManager</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="180.4140625" modelName="custom" textColor="#000000" visible="true" width="314.810546875" x="2.0" y="30.701171875">private:
+vector&lt;Surface&gt; *                      m_surfaces;
+map&lt;const string,Surface&gt; *  m_surfacesNamed;
+public:
+void addSurface(Surface surf);
+void addSurfaceNamed(Surface surf,const string &amp; name);
+bool existsSurfaceNamed(const string &amp; name);
+Surface getSurface(int indx);
+Surface getSurfaceNamed(const string &amp; name);
+void freeSurfaces();
+void freeSurfacesNamed();
+void freeAll();
 <y:LabelModel>
               <y:ErdAttributesNodeLabelModel/>
             </y:LabelModel>

@@ -171,7 +171,7 @@ uint calcBiggestMulti(uint x, uint y) {
 	return 0;
 }
 
-bool print_displayinfo() {
+HardwareInfo getHardwareInfo() {
 	// 2715 1527
 	// 905 509  fac(3)
 	int resx, resy, aspx, aspy, fac;
@@ -187,7 +187,7 @@ bool print_displayinfo() {
 
 	info.update();
 
-	return true;
+	return info;
 }
 
 void myOS::testGPUram() {
@@ -241,6 +241,16 @@ void myOS::loadResources() {
 
 		SDL_FreeSurface(surf);
 	}
+}
+void myOS::exeScriptList() {
+
+	int size = scriptList.size();
+	
+	for (int i = 0; i < size; ++i)
+		scriptList[i]();
+
+	scriptList.clear();
+
 }
 void myOS::input() {
 
@@ -312,7 +322,7 @@ void myOS::start_mainloop() {
 	while (!quit) {
 
 		time.update();
-		//doScripts
+		exeScriptList();
 		input();
 		update();
 		render();
@@ -328,7 +338,7 @@ int myOS::start_myOS(int argc, char** argv) {
 
 	initLibs();
 
-	print_displayinfo();
+	getHardwareInfo();
 
 	createWin();
 

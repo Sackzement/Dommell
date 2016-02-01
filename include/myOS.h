@@ -4,7 +4,7 @@
 #include <SDL/SDL_render.h>
 #include <Ngin/Keyboard.h>
 #include "../include/Settings.h"
-
+#include <functional>
 
 struct myOS
 {
@@ -14,8 +14,12 @@ private:
 	Time time;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	Keyboard keyboard;
+
 	bool quit = false;
+	std::vector<std::function<void()>>  scriptList;
+	std::vector<std::function<void()>>  inputList;
+	Keyboard keyboard;
+
 	SDL_Texture* bg;
 
 
@@ -26,12 +30,16 @@ private:
 
 	void createWin();
 	void createRenderer();
+
 	void testGPUram();
 	void createBG();
 	void loadResources();
+
+	void exeScriptList();
 	void input();
 	void update();
 	void render();
+	
 	void start_mainloop();
 
 };

@@ -1,8 +1,9 @@
 
 #include <SDL/SDL_platform.h>
-#include "include/myOS.h"
+//#include "include/myOS.h"
+#include "include/Sachen.h"
 
-myOS os;
+//myOS os;
 
 
 #if defined(__WINDOWS__) && defined(_WINDOWS)
@@ -13,7 +14,9 @@ int main
 
 (int argc, char** argv) {
 
-    return os.start_myOS(argc,argv);
+	startGame();
+
+	return 0;// os.start_myOS(argc, argv);
 }
 
 

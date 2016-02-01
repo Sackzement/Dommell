@@ -166,6 +166,7 @@
     <ClInclude Include="..\include\MainMenu.h" />
     <ClInclude Include="..\include\myOS.h" />
     <ClInclude Include="..\include\Node.h" />
+    <ClInclude Include="..\include\Sachen.h" />
     <ClInclude Include="..\include\SCB.h" />
     <ClInclude Include="..\include\Settings.h" />
     <ClInclude Include="..\include\test.h" />
