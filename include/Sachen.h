@@ -24,11 +24,12 @@ struct Transform {
 
 struct RenderComponent : public Transform {
 
+//	RenderComponent() = default;
 	virtual void render(Transform offset = Transform()) = 0;
 };
 struct Shape : public RenderComponent {
 	SDL_Color color;
-	Shape() : color({255,255,255,255}) {}
+	Shape() : RenderComponent(), color({255,255,255,255}) {}
 };
 struct Rect : public Shape{
 	void render(Transform offset = Transform()) {
@@ -42,11 +43,15 @@ struct Rect : public Shape{
 };
 struct RenderObject : public RenderComponent {
 
-	vector<RenderObject*> child_renderobjs;
+	vector<RenderObject*> children;
+	void renderChildren() {
+		for (int i = 0; i < children.size(); ++i)
+			children[i]->render();
+	}
 };
 struct Object : public RenderObject {
 
-	vector<Object*> childobjs;
+	//vector<Object*> childobjs;
 };
 
 
@@ -108,16 +113,16 @@ struct InputManager {
 
 struct RenderManager {
 
-	vector<function<void(Transform)>> renderfuncs;
+	vector<RenderObject*> renderobjs;
 
 	void process() {
 		SDL_SetRenderTarget(sdl_renderer, nullptr);
 		SDL_SetRenderDrawColor(sdl_renderer, 0, 0, 0, 255);
 		SDL_RenderClear(sdl_renderer);
 
-		const size_t num_of_objs = renderfuncs.size();
+		const size_t num_of_objs = renderobjs.size();
 		for (size_t i = 0; i < num_of_objs; ++i)
-			renderfuncs[i] ( Transform(0., 0., 120., 120.) );
+			renderobjs[i]->render( Transform(0., 0., 120., 120.) );
 
 		SDL_RenderPresent(sdl_renderer);
 	}
@@ -171,7 +176,7 @@ void startGame() {
 	openWindow();
 	
 
-	render_manager.renderfuncs.push_back(new Rect());
+	render_manager.renderobjs.push_back(new Rect());
 
 	input_manager.init();
 	input_manager.keydownevents[SDL_SCANCODE_Q] = []() {running = false; };
@@ -179,7 +184,7 @@ void startGame() {
 		Rect* r = new Rect();
 		r->pos.x = double(input_manager.mouse.x) / 120.;
 		r->pos.y = double(input_manager.mouse.y) / 120.;
-		render_manager.renderfuncs.push_back(r); };
+		render_manager.renderobjs.push_back(r); };
 	
 	mainloop();
 }

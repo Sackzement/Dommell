@@ -163,6 +163,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Clonk.h" />
+    <ClInclude Include="..\include\Game.h" />
     <ClInclude Include="..\include\MainMenu.h" />
     <ClInclude Include="..\include\myOS.h" />
     <ClInclude Include="..\include\Node.h" />
