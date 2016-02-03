@@ -9,7 +9,6 @@ struct Game {
 
 	SDL_Window*		sdl_window;
 	SDL_Renderer*	sdl_renderer;
-	SDL_RendererFlip::SDL_FLIP_HORIZONTAL;
 
 	void start() {
 
